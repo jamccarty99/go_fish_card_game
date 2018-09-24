@@ -1,0 +1,90 @@
+body {
+  background: #03183D;
+  font-family: fantasy;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.orange {
+    color: #F38F29;
+}
+
+.heading {
+  text-align: center;
+  display: block;
+  font-size: 60px;
+  font-family: fantasy;
+}
+
+.signin__container {
+  width: 70%;
+}
+
+.signin__title {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.signup__input--password{
+  font-size: 15px;
+  background: #03183D;
+  padding: 2px;
+  border-width: 1px;
+  border-style: inset;
+  border-color: #F38F29;
+  border-radius: 4px;
+}
+
+.signup__input--username {
+  font-size: 15px;
+  background: #03183D;
+  cursor: text;
+  padding: 2px;
+  border-width: 1px;
+  border-style: inset;
+  border-color: #F38F29;;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.signup__button--login {
+  font-size: 15px;
+  margin-top: 15px;
+}
+
+.navigation__container {
+  height: 40px;
+  width: 100%
+  display: block;
+}
+
+.main_menu__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 50px;
+}
+.menu__buttons {
+  font-size: 45px;
+  color: #fff;
+  background: #F38F29;
+  border-width: 1px;
+  border-style: inset;
+  border-color: #F38F29;
+  border-radius: 20px;
+  margin: 30px 0;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+}

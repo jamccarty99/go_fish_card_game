@@ -1,4 +1,5 @@
 class PlayingCard
+  attr_reader :rank, :suit
   VALUES = {
     "2" => 1,
     "3" => 2,

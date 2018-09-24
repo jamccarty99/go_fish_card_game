@@ -38,5 +38,6 @@ class Player
     cards = hand.select{ |card| card.rank == rank }
     hand.reject!{ |card| card.rank == rank }
     receiver.add_cards(*cards)
+    "#{receiver.name} received #{cards.length} #{rank}/s!"
   end
 end
