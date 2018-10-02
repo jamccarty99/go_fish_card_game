@@ -1,0 +1,217 @@
+body {
+  background: #03183D;
+  font-family: fantasy;
+  color: #F38F29;
+
+}
+.reverse {
+  background: #F38F29;
+  color: #03183D;
+}
+
+.flex_row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex_column {
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  align-items: center;
+}
+
+.signin__container {
+  justify-content: space-around;
+}
+
+.navigation__container {
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+.settings__container {
+  justify-content: center;
+}
+
+.main_menu__container {
+  align-items: center;
+}
+
+.heading {
+  text-align: center;
+  display: block;
+  font-size: 60px;
+  font-family: fantasy;
+}
+
+.signin__form {
+  justify-content: center;
+  justify-content: space-around;
+}
+
+.siginin_links {
+  margin-top: 15px;
+}
+
+.signin__title {
+  font-size: 30px;
+  margin-bottom: 15px;
+}
+
+.signup__input--password{
+  width: 200px;
+  font-size: 15px;
+  color: #F38F29;
+  cursor: text;
+  background: #03183D;
+  padding: 2px;
+  border-width: 1px;
+  border-style: inset;
+  border-color: #F38F29;
+  border-radius: 4px;
+}
+
+.signup__input--username {
+  width: 200px;
+  font-size: 15px;
+  color: #F38F29;
+  background: #03183D;
+  cursor: text;
+  padding: 2px;
+  border-width: 1px;
+  border-style: inset;
+  border-color: #F38F29;;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.signup__link--newuser {
+    color: #F38F29;
+    font-size: 14px;
+    font-family: system-ui;
+}
+
+.signup__link--forgot {
+    margin-left: 20px;
+    color: #F38F29;
+    font-size: 14px;
+    font-family: system-ui;
+}
+
+.signup__button--login {
+  font-size: 15px;
+  margin-top: 15px;
+  color: #03183D;
+  background: #F38F29;
+  padding: 2px;
+  border-width: 1px;
+  border-style: inset;
+  border-color: #03183D;
+  border-radius: 4px;
+}
+
+.menu__buttons {
+  text-align: center;
+  width: 300px;
+  color: #fff;
+  background: #F38F29;
+  border-width: 1px;
+  border-style: inset;
+  border-color: #F38F29;
+  border-radius: 20px;
+  margin: 30px;
+  font: 400 45px Arial;
+}
+
+.navigation__item {
+  margin: 45px;
+}
+
+.navigation__item--back{
+  /* margin-left: 30px; */
+}
+
+.navigation__item--settings {
+  /* margin-right: 30px; */
+}
+
+.navigation__title{
+  font-size: 35px;
+  text-align: center;
+}
+
+.settings__button--quit {
+  font-size: 30px;
+  color: #fff;
+  background: #BD1230;
+  border-width: 1px;
+  border-style: inset;
+  border-color: #BD1230;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.settings__item {
+  margin-left: 30px;
+}
+
+.waiting__box {
+  margin-top: 30%;
+}
+
+.game__img--deck{
+  margin-top: 30px;
+}
+
+.game__message--box {
+  text-align: center;
+  font-size: 30px;
+  color: #03183D;
+  background-color: #F38F29;
+  border-width: 3px;
+  border-style: inset;
+  border-color: #1CA28C;
+  border-radius: 5px;
+  margin: 30px;
+}
+
+.right{
+  justify-content: flex-end;
+}
+
+.avatar_container {
+  position: relative;
+}
+
+.avatar_name {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 10px;
+  color: white;
+}
+
+.avatar_sets {
+  position: absolute;
+  top: 78%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8px;
+  color: white;
+}
+.hidden {
+  visibility: hidden;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:visited {
+  color: white;
+}

@@ -1,0 +1,32 @@
+-opponents = game.players.find { |player| player.name == session[:opponent_name]}
+-go_fish = game.go_fish_toggle
+
+.container.flex_column
+    form action="/game" method="POST" id="request_form"
+      a.flex_row href="/settings"
+        img alt="settings icon" src="assets/settings_icon_small.png"
+      label.flex_row for="asked_player"
+        .avatar_container
+          img alt="opponent avatar image" src="assets/blank_avatar.png"
+          .avatar_name #{opponent_name}
+          .avatar_sets Sets: #{opponents.sets_count}
+        - opponents.hand.each do |card|
+            img alt="back of card image" src="assets/card_back.png"
+      input.hidden name="asked_player" type="radio" id="asked_player" value="#{opponent_name}" required=""
+    - if (go_fish == true)
+      form.flex_row.settings__container action="/fish" method="post" id="fish_form"
+        button type="submit" name="asked_card" value="#{card.rank}"
+          img.game__img--deck alt="deck image" src="assets/deck.png"
+    - else
+      .flex_row.settings__container for="go_fish_draw"
+        img.game__img--deck alt="deck image" src="assets/deck.png"
+    .flex_row.settings__container
+      h1.game__message--box #{message}
+    .flex_row.settings__container
+      .avatar_container
+        img alt="self avatar image" src="assets/blank_avatar.png"
+        .avatar_name #{username}
+        .avatar_sets Sets: #{current_user.sets_count}
+      - current_user.hand.each do |card|
+        button type="submit" name="asked_card" value="#{card.rank}" form="request_form"
+          img alt="#{card.rank} of #{card.suit}" src="assets/#{card.to_s}.png"

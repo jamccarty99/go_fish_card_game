@@ -4,13 +4,19 @@ require_relative('player')
 require('pry')
 
 class Game
-  attr_accessor :players, :current_player
+  attr_accessor :players, :current_player, :message, :go_fish_toggle
   attr_reader :deck, :clients
-  def initialize(clients)
+  def initialize(clients = [])
     @clients = clients
     @players = []
     @deck = Deck.new.shuffle
     @current_player = nil
+    @message = ''
+    @go_fish_toggle = false
+  end
+
+  def add_player(player)
+    clients.push(player)
   end
 
   def start
@@ -27,9 +33,9 @@ class Game
 
   def size_of_game(players = [])
     @num = 7
-    if (players.length) < 4
+    if players.length < 4
       @num = 7
-    elsif (players.length) >= 4
+    elsif players.length >= 4
       @num = 5
     end
   end
@@ -46,20 +52,18 @@ class Game
     deck.shift
   end
 
-  def play_round
+  def play_round(rank, player)
     next_players_turn
-    play_turn
-    results_string = ""
-    players.each do |player|
-      results_string << "#{player.name} has #{player.hand_length} cards in hand and #{player.sets.length} sets "
+    play_turn(rank, player)
+    results_string = ''
+    players.each do |i|
+      results_string << "#{i.name} has #{i.hand_length} cards in hand and #{i.sets.length} sets "
     end
     results_string
   end
 
-  def play_turn
-    until "Go Fish!"
-      current_player.request_cards(rank, player)
-    end
+  def play_turn(rank, player)
+    request_cards(rank, player) until message == 'Go Fish!'
     go_fish
   end
 
@@ -67,25 +71,29 @@ class Game
     if player.have_any?(rank)
       player.give_cards(current_player, rank)
     else
-      "Go Fish!"
+      @go_fish_toggle = true
+      @message = 'Go Fish!'
     end
   end
 
   def go_fish
-    if deck.length != 0
+    if !deck.empty?
       current_player.add_cards(deal)
-      "#{current_player.name} went fishing!"
+      @go_fish_toggle = false
+      @message = "#{current_player.name} went fishing!"
+      # next_players_turn
     else
-      "There are no more fish to catch:("
+      next_players_turn
+      @go_fish_toggle = false
+      @message = "There are no more fish to catch:(\n It is #{current_player.name}'s turn."
     end
+  # next_players_turn
   end
 
   def next_players_turn
-    if current_player == nil
-      self.current_player = players[0]
-    else
-      self.current_player = players[turn_index]
-    end
+    self.current_player = (current_player.nil? ? players[0] : players[turn_index])
+    @message = "It is #{current_player.name}'s turn. Select a player, then a card to ask for."
+    self.current_player
   end
 
   def turn_index
@@ -99,7 +107,7 @@ class Game
 
   def sets_total
     total_sets = 0
-    players.each{ |player|  total_sets = (total_sets + player.sets.length) }
+    players.each { |player| total_sets = (total_sets + player.sets.length) }
     total_sets
   end
 
@@ -110,11 +118,10 @@ class Game
   end
 
   def winner
-    if sets_total == 13
-      "Winner: #{most_sets.name}"
-    end
+    @message = "Winner: #{most_sets.name}" if sets_total == 13
   end
 
   private
+
   attr_writer :deck
 end

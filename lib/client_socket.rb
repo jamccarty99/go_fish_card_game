@@ -15,11 +15,11 @@ class ClientSocket
     @socket.puts(text)
   end
 
-  def capture_output(delay=0.1)
+  def capture_output(delay = 0.1)
     sleep(delay)
     @socket.read_nonblock(1000) # not gets which blocks
   rescue IO::WaitReadable
-    ""
+    ''
   end
 
   def close

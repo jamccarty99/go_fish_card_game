@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Go Fish App</title>
+  <link rel="stylesheet" href="../assets/stylesheets/application.css" type="text/css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <div class="container flex_column">
+    <h1 class="heading">Go Fish!</h1>
+    <div class="signin__container">
+      <h1 class="signin__title">Sign In</h1>
+      <form method="POST" action="main_menu.html" class="signin__form flex_column">
+          <span class="signup__label--username">Username</span>
+        <input type="text" class="signup__input--username" value="e.g. johndoe@hotmail.com" name="username"autocomplete="on">
+          <span class="signup__label-password">Password</span>
+        <input type="password" class="signup__input--password" name="password" value="e.g. •••••••••">
+        <div class="signin__for">
+          <a class="signup__button--newuser" value="New user?" href="#"></a>
+          <a href="#" class="signup__button--forgot" value="Forgot password?"></a>
+        </div>
+        <input type="submit" class="signup__button--login" value="Login">
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

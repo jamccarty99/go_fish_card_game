@@ -23,14 +23,14 @@ class GameServer
     @games ||= []
   end
 
-  def accept_new_client(player_name = "Random Player")
+  def accept_new_client(player_name = 'Random Player')
     client = ServerClient.new(server.accept_nonblock, player_name)
     # associate player and client
     pending_clients.push(client)
-    client.provide_input(pending_clients.length.odd? ? "Welcome.  Waiting for another player to join." : "Welcome.  Are you ready to go fishing!")
+    client.provide_input(pending_clients.length.odd? ? 'Welcome.  Waiting for another player to join.' : 'Welcome.  Are you ready to go fishing!')
     client
   rescue IO::WaitReadable, Errno::EINTR
-    puts ""
+    puts ''
   end
 
   def create_game_if_possible
@@ -58,8 +58,8 @@ class GameServer
 
   def run_game(game)
     # spawn a thread
-    threads = []
-    Thread.start() do
+    # threads = []
+    Thread.start do
       game_runner = GameRunner.new(game, @players_in_game[game])
       game_runner.start
     end

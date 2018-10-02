@@ -2,30 +2,22 @@
 <html>
   <head>
     <title>Game Size Menu</title>
-    <link rel="stylesheet" type="text/css" href="go_fish.css">
+    <link rel="stylesheet" type="text/css" href="../assets/stylesheets/application.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
 
     <div class="container">
-      <div class="navigation__container">
-        <a href="#" class="navigation__button--chevron"><img src="/images/chevron_left.png" alt="chevron_left icon"></a>
-        <a href="#" class="navigation__button--settings"><img src="/images/settings_icon.png" alt="settings icon"></a>
+      <div class="navigation__container flex_row">
+        <a href="/" class="navigation__item navigation__item--back"><img src="../assets/images/back_arrow.png" alt="chevron_left icon"></a>
+        <a href="/settings" class="navigation__item navigation__item--settings"><img src="../assets/images/settings_icon_small.png" alt="settings icon"></a>
       </div>
-      <div class="main_menu__container">
-        <button type="button" class="menu__buttons">
-          <a href="#">2 Player</a>
-        </button>
-        <button type="button" class="menu__buttons">
-          <a href="#">3 Player</a>
-        </button>
-        <button type="button" class="menu__buttons">
-          <a href="#">4 Player</a>
-        </button>
-        <button type="button" class="menu__buttons">
-          <a href="#">5 Player</a>
-        </button>
+      <div class="main_menu__container flex_column">
+        <button type="submit" class="menu__buttons" formaction="/waiting" formmethod="post" value="2">2 Player</button>
+        <button type="submit" class="menu__buttons" formaction="/waiting" formmethod="POST" value="3">3 Player</button>
+        <button type="submit" class="menu__buttons" formaction="/waiting" formmethod="POST" value="4">4 Player</button>
+        <button type="submit" class="menu__buttons" formaction="/waiting" formmethod="POST" value="5">5 Player</button>
       </div>
 
     </div>

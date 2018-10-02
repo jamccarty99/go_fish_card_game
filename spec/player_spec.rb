@@ -1,18 +1,18 @@
 require_relative '../lib/player'
 
 describe 'Player' do
-  let(:player) { Player.new("Joey") }
-  let(:roy) { Player.new("Roy") }
-  let(:game) { Game.new(["player1", "player2"]) }
-  let(:card) { PlayingCard.new("Queen", "Spades") }
-  let(:player2_card) { PlayingCard.new("4", "Hearts") }
-  let(:set) {[PlayingCard.new("Queen", "Spades"), PlayingCard.new("Queen", "Clubs"), PlayingCard.new("Queen", "Hearts"), PlayingCard.new("Queen", "Diamonds")]}
-  let(:almost_set) {[PlayingCard.new("Queen", "Clubs"), PlayingCard.new("Queen", "Hearts"), PlayingCard.new("Queen", "Diamonds")]}
-  let(:deck_of_2) { [ PlayingCard.new("Queen", "Spades"), PlayingCard.new("4", "Spades") ] }
+  let(:player) { Player.new('Joey') }
+  let(:roy) { Player.new('Roy') }
+  let(:game) { Game.new(%w[player1 player2]) }
+  let(:card) { PlayingCard.new('Queen', 'Spades') }
+  let(:player2_card) { PlayingCard.new('4', 'Hearts') }
+  let(:set) { [PlayingCard.new('Queen', 'Spades'), PlayingCard.new('Queen', 'Clubs'), PlayingCard.new('Queen', 'Hearts'), PlayingCard.new('Queen', 'Diamonds')]}
+  let(:almost_set) { [PlayingCard.new('Queen', 'Clubs'), PlayingCard.new('Queen', 'Hearts'), PlayingCard.new('Queen', 'Diamonds')]}
+  let(:deck_of_2) { [PlayingCard.new('Queen', 'Spades'), PlayingCard.new('4', 'Spades') ] }
 
   describe 'initialize' do
     it 'Should contain a name' do
-      expect(player.name).to eq "Joey"
+      expect(player.name).to eq 'Joey'
     end
 
     it 'Should contain an array for players hand' do
@@ -36,21 +36,21 @@ describe 'Player' do
   end
 
   describe 'have_any?' do
-    it 'Should search the players hand for the card requested and return boolean' do
+    it 'Should search players hand for the card requested and return boolean' do
       player.hand.push(card)
-      expect(player.have_any?("Queen")).to eq true
+      expect(player.have_any?('Queen')).to eq true
     end
-    it 'Should search the players hand for the card requested and return boolean' do
+    it 'Should search players hand for the card requested and return boolean' do
       player.hand.push(player2_card)
-      expect(player.have_any?("Queen")).to eq false
+      expect(player.have_any?('Queen')).to eq false
     end
   end
 
   describe 'add_cards' do
     it 'adds a card to the players hand' do
       expect(player.hand).to eq []
-      expect{player.add_cards(card)}.to change{player.hand_length}.by(1)
-      expect(player.hand[0].rank).to match /Queen/
+      expect { player.add_cards(card) }.to change { player.hand_length }.by(1)
+      expect(player.hand[0].rank).to match(/Queen/)
     end
 
     it 'checks for sets' do
@@ -61,26 +61,25 @@ describe 'Player' do
   end
 
   describe 'give_cards' do
-    it 'Should remove the card from current players hand and give it to the other' do
+    it 'Should remove card from current players hand and give to the other' do
       player.hand.push(card, player2_card)
-      expect{player.give_cards(roy, "Queen")}.to change{player.hand_length}.by(-1)
+      expect { player.give_cards(roy, 'Queen') }.to change { player.hand_length }.by(-1)
       player.hand.push(card)
-      expect{player.give_cards(roy, "Queen")}.to change{roy.hand_length}.by(1)
+      expect { player.give_cards(roy, 'Queen') }.to change { roy.hand_length }.by(1)
     end
   end
 
   describe 'check_for_sets' do
-    it 'Checks for sets of four cards with matching rank and removes them from the hand' do
+    it 'Checks for sets of four cards with matching rank and removes from hand' do
       player.hand.push(set)
       player.hand.flatten!
-      expect{player.check_for_sets("Queen")}.to change{player.hand_length}.by(-4)
+      expect { player.check_for_sets('Queen') }.to change { player.hand_length }.by(-4)
     end
 
     it 'Then moves them set of cards to the sets array' do
       player.hand.push(set)
       player.hand.flatten!
-      expect{player.check_for_sets("Queen")}.to change{player.sets.length}.by(1)
+      expect { player.check_for_sets('Queen') }.to change { player.sets.length }.by(1)
     end
   end
-
 end

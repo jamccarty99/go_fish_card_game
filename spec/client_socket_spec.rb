@@ -16,15 +16,15 @@ class MockServer
 
   def accept
     socket = @socket.accept_nonblock
-    socket.puts("Welcome")if socket
+    socket.puts('Welcome') if socket
     sleep(0.1)
   end
 
-  def capture_output(delay=0.1)
+  def capture_output(delay = 0.1)
     sleep(delay)
     @output = @socket.read_nonblock(1000) # not gets which blocks
   rescue IO::WaitReadable
-    @output = ""
+    @output = ''
   end
 
   def close
@@ -50,16 +50,15 @@ describe 'ClientSocket' do
     server.close
   end
 
-  describe 'capture_output'do
+  describe 'capture_output' do
     it 'Tells me it is waiting for another player when asked to play' do
       server.accept
       expect(socket.capture_output).to eq("Welcome\n")
     end
   end
 
-  describe'provide_input' do
+  describe 'provide_input' do
     xit '' do
-
     end
   end
 end

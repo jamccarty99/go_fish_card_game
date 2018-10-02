@@ -2,20 +2,21 @@
 <html>
   <head>
     <title>Main Menu</title>
-    <link rel="stylesheet" type="text/css" href="go_fish.css">
+    <link rel="stylesheet" type="text/css" href="../assets/stylesheets/application.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
 
     <div class="container">
-      <div class="navigation__container">
-        <a href="#" class="navigation__button--chevron"><img src="/images/chevron_left.png" alt="chevron_left icon"></a>
-        <a href="#" class="navigation__button--settings"><img src="/images/settings_icon.png" alt="settings icon"></a>
+      <div class="navigation__container flex_row">
+        <a href="#" class="navigation__item navigation__item--back"><img src="../assets/images/back_arrow.png" alt="chevron_left icon"></a>
+        <h1 class="navigation__title">Welcome</h1>
+        <a href="#" class="navigation__item navigation__item--settings"><img src="../assets/images/settings_icon_small.png" alt="settings icon"></a>
       </div>
-      <div class="main_menu__container">
+      <div class="main_menu__container flex_column">
         <button type="button" class="menu__buttons">
-          <a href="#">Play Game</a>
+          <a href="./game_size.html">Play Game</a>
         </button>
         <button type="button" class="menu__buttons">
           <a href="#">Leaderboard</a>

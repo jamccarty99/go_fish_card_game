@@ -1,0 +1,13 @@
+.container.flex_column
+  h1.heading Go Fish!
+  .signin__container
+    h1.signin__title Sign In
+    form.signin__form.flex_column action="/login" method="POST"
+      span.signup__label--username Username
+      input.signup__input--username autocomplete="on" name="username" type="text" placeholder=("johndoe") maxlength="13" required=""
+      span.signup__label-password Password
+      input.signup__input--password name="password" type="password" placeholder=("e.g. •••••••••")
+      .signin__form.signup__links
+        a.signup__link--newuser href="#" type="button" New user?
+        a.signup__link--forgot href="#" type="button" Forgot password?
+      input.signup__button--login type="submit" value="Login"

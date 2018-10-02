@@ -1,13 +1,14 @@
 require_relative '../lib/game'
 
 describe 'Game' do
-  let(:player1_card) { PlayingCard.new("Queen", "Spades") }
-  let(:player2_card) { PlayingCard.new("4", "Hearts") }
-  let(:game) { Game.new(["player1", "player2"]) }
-  let(:game_of_5) { Game.new(["player1", "player2", "player3", "player4", "player5"])}
-  let(:deck_of_2) { [ PlayingCard.new("Queen", "Spades"), PlayingCard.new("4", "Spades") ] }
-  let(:deck_of_1) { [ PlayingCard.new("4", "Hearts") ] }
-  let(:set) {[PlayingCard.new("Queen", "Spades"), PlayingCard.new("Queen", "Clubs"), PlayingCard.new("Queen", "Hearts"), PlayingCard.new("Queen", "Diamonds")]}
+  let(:player1_card) { PlayingCard.new('Queen', 'Spades') }
+  let(:player2_card) { PlayingCard.new('4', 'Hearts') }
+  let(:game) { Game.new(%w[player1 player2]) }
+  let(:game_of_5) { Game.new(%w[player1 player2 player3 player4 player5]) }
+  let(:deck_of_2) { [PlayingCard.new('Queen', 'Spades'), PlayingCard.new('4', 'Spades')] }
+  let(:deck_of_1) { [PlayingCard.new('4', 'Hearts')] }
+  let(:set) { [PlayingCard.new('Queen', 'Spades'), PlayingCard.new('Queen', 'Clubs'), PlayingCard.new('Queen', 'Hearts'), PlayingCard.new('Queen', 'Diamonds')] }
+  let(:player2) { Player.new('player2')}
 
   describe 'start' do
     it 'Should deal 5 cards to each player in a 4+ player game' do
@@ -31,8 +32,8 @@ describe 'Game' do
   describe 'deal' do
     it 'Should take a card from the deck' do
       card = game.deal(deck_of_2)
-      expect(card.rank).to match /Queen/
-      expect(card.suit).to match /Spades/
+      expect(card.rank).to match(/Queen/)
+      expect(card.suit).to match(/Spades/)
     end
   end
 
@@ -40,8 +41,8 @@ describe 'Game' do
     it 'should play a round of Go-Fish and display the current game details' do
       game.start
       game.next_players_turn
-      expect(game.play_round).to match /player1 has/
-      expect(game.play_round).not_to match /player1 has 26 cards in hand/
+      expect(game.play_round('Ace', player2)).to match(/player1 has/)
+      expect(game.play_round('Ace', player2)).not_to match(/player1 has 26 cards in hand/)
     end
   end
 
@@ -49,46 +50,44 @@ describe 'Game' do
     it 'should play the current_players turn' do
       game.start
       game.next_players_turn
-      expect(game.play_turn).to eq("There are no more fish to catch:(").or match /went fishing!/
+      expect(game.play_turn('5', player2)).to eq('There are no more fish to catch:(').or match(/went fishing!/)
     end
   end
 
   describe 'request_cards' do
-    it 'Should give cards to the current_player if the player asked has at least one' do
+    it 'Should give cards to current_player if player asked has at least one' do
       game.start
       game.next_players_turn
       empty_hand
       game.players[1].hand.push(player1_card)
       # expect(game.request_cards("Queen", game.players[1])).to match /received/
-      expect{game.request_cards("Queen", game.players[1])}.to change{game.players[0].hand_length}.by(1)
+      expect { game.request_cards('Queen', game.players[1]) }.to change { game.players[0].hand_length }.by(1)
     end
 
     it 'Should display a message if the player asked does not have the card' do
       game.start
       game.next_players_turn
       empty_hand
-      expect(game.request_cards("Queen", game.players[1])).to match /Go Fish!/
+      expect(game.request_cards('Queen', game.players[1])).to match(/Go Fish!/)
     end
 
     def empty_hand
-      until game.players[1].hand = [] do
-        game.players[1].hand.shift
-      end
+      game.players[1].hand.shift until game.players[1].hand == []
     end
   end
 
   describe 'go_fish' do
-    it 'Should deal a card to the current_player if there are cards in the deck' do
+    it 'Should deal a card to current_player if there are cards in the deck' do
       game.start
       game.next_players_turn
-      expect{game.go_fish}.to change{game.players[0].hand_length}.by(1)
+      expect { game.go_fish }.to change { game.players[0].hand_length }.by(1)
     end
 
     it 'Should send the player a message if the deck is empty' do
       game.start
       game.next_players_turn
       game.send(:deck=, [])
-      expect(game.go_fish).to eq "There are no more fish to catch:("
+      expect(game.go_fish).to match(/There are no more fish to catch/)
     end
   end
 
@@ -103,7 +102,7 @@ describe 'Game' do
   end
 
   describe 'sets_total' do
-    it 'should count the total number of sets between all players in the game' do
+    it 'should count the total number of sets between all players in game' do
       game.start
       game.players[0].sets.push(set)
       expect(game.sets_total).to eq 1
@@ -124,7 +123,7 @@ describe 'Game' do
       13.times do
         game.players[1].sets.push(set)
       end
-      expect(game.winner).to match /Winner/
+      expect(game.winner).to match(/Winner/)
     end
   end
 end

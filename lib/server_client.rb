@@ -1,5 +1,5 @@
 class ServerClient
-  attr_reader   :name, :connection
+  attr_reader :name, :connection
 
   def initialize(connection, player_name)
     @connection = connection
@@ -10,11 +10,11 @@ class ServerClient
     connection.puts(text)
   end
 
-  def capture_output(delay=0.1)
+  def capture_output(delay = 0.1)
     sleep(delay)
     connection.read_nonblock(1000) # not gets which blocks
   rescue IO::WaitReadable
-    ""
+    ''
   end
 
   def close

@@ -2,32 +2,31 @@
 <html>
   <head>
     <title>Settings Menu</title>
-    <link rel="stylesheet" type="text/css" href="go_fish.css">
+    <link rel="stylesheet" type="text/css" href="../assets/stylesheets/application.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
 
   <body>
 
-    <div class="container">
-      <div class="navigation__container">
-        <a href="#" class="navigation__button--chevron"><img src="/images/chevron_left.png" alt="chevron_left icon"></a>
-        <a href="#" class="navigation__button--settings"><img src="/images/settings_icon.png" alt="settings icon"></a>
+    <div class="container flex_column">
+      <div class="navigation__container flex_row">
+        <a href="#" class="navigation__item navigation__item--back"><img src="/Users/justin/code/rolemodel/go_fish_card_game/public/images/back_arrow.png" alt="chevron_left icon"></a>
+        <h1 class="navigation__title">Settings</h1>
+        <a href="#" class="navigation__item navigation__item--settings"><img src="/Users/justin/code/rolemodel/go_fish_card_game/public/images/settings_icon_small.png" alt="settings icon"></a>
       </div>
-      <div class="main_menu__container">
-        <button type="button" class="menu__buttons">
-          <a href="#">Play Game</a>
+      <div class="settings__container">
+        <button type="button" class="settings__button--quit">
+          <a href="#">Quit Current Game</a>
         </button>
-        <button type="button" class="menu__buttons">
-          <a href="#">Leaderboard</a>
-        </button>
-        <button type="button" class="menu__buttons">
-          <a href="#">How to Play</a>
-        </button>
-        <button type="button" class="menu__buttons">
-          <a href="#">Settings</a>
-        </button>
+        <p class="settings__item">Username:</p>
+        <p class="settings__item">Language:</p>
+        <p class="settings__item">Default Game Size:</p>
+        <p class="settings__item">Hand Order:</p>
+        <p class="settings__item">Game Music:
+          <a href="#"><img src="/Users/justin/code/rolemodel/go_fish_card_game/public/images/sound.png" alt="sound icon"></a>
+        </p>
       </div>
     </div>
-    
+
   </body>
 </html>
